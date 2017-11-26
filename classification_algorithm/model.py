@@ -68,7 +68,7 @@ def train_test(data):
 
 	cm=confusion_matrix(y_test,y_pred)
 
-	print cm
+	# print cm
 
 	return clf
 
