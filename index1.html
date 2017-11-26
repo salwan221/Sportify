@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Material Login Form</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link href="css\layout.css" rel="stylesheet" type="text/css" media="all">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+<style type="text/css">
+body{background: #1E1E1E}
+</style>
+<script>
+function check()
+{
+	if(window.confirm("Want to submit the details?"))
+	{
+		window.open('predict.html');		
+	}
+}
+function validate()
+{
+	var name= document.f1.t1.value;
+	var pass= document.f1.p1.value;
+	if(name=="")
+	{
+		alert("Fill out this field");
+		document.f1.t1.focus();
+	}
+	if( name!="" && pass=="")
+	{
+		alert("Fill out this field");
+		document.f1.t1.focus();
+	}	
+	if(name!="" && pass!="")
+	{		
+		check();
+	}
+}
+</script>
+  
+</head>
+
+<body>
+<div class="bgded overlay" style="background-image:url('http://wallpapercave.com/wp/76enKL8.jpg');"> 
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1><a href="index.html">Sportify</a></h1>
+      </div>
+      <nav id="mainav" class="fl_right">
+        <ul class="clear">
+          <li><a href="index.html">Home</a></li>
+          <li class="active"><a href="index1.html">Login/Sign Up</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ -->
+    </header>
+  </div>  
+<!-- Mixins-->
+<!-- Pen Title-->
+
+<div class="container">
+  <div class="card"></div>
+  <div class="card">
+    <h1 class="title">Login</h1>
+    <form name="f1">
+      <div class="input-container">
+        <input type="#{type}" id="#{label}" name="t1" required/>
+        <label for="#{label}">Username*</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="#{type}" id="#{label}"  name="p1" required/>
+        <label for="#{label}">Password*</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+        <button  type="submit" onClick="validate()"><span>Go</span></button>
+      </div>
+      <div class="footer"><a href="help.html">Forgot your password?</a></div>
+    </form>
+  </div>
+  <div class="card alt">
+    <div class="toggle"></div>
+    <h1 class="title">Register
+      <div class="close"></div>
+    </h1>
+    <form>
+    <div class="input-container">
+        <input type="#{type}" id="#{label}" required/>
+        <label for="#{label}">Name</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="#{type}" id="#{label}" required/>
+        <label for="#{label}">Age</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="#{type}" id="#{label}" required/>
+        <label for="#{label}">Email Address</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="#{type}" id="#{label}" required/>
+        <label for="#{label}">Password</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="#{type}" id="#{label}" required/>
+        <label for="#{label}">Confirm Password</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+        <button onClick="<a href=''" onFocus="return validate()"><span>Next</span></button>
+      </div>
+    </form>
+  </div>
+  
+</div>
+<div id= "contact"class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_third first">
+      <h6 class="heading">Contact</h6>
+      <p> xyabcdefz@gmail.com</p>
+      <p>abc@gmail.com</p>
+      <p>Mob No. 8475673452</p>
+    </div>
+    <div class="one_third">
+      <h6 class="heading">Find Us</h6>
+      <nav>
+        <ul class="nospace">
+          <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="#">About</a></li>
+      </nav>
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+      </ul>
+    </div>
+    
+    <div class="one_third">
+      <h6 class="heading">Recent Activity</h6>
+      <ul class="nospace linklist">
+        <li><a href="http://www.hindustantimes.com/football/fifa-world-cup-2018-three-reasons-behind-italy-s-qualification-apocalypse/story-DrG3BFEgfRQxLoJKOW28lN.html">Fifa World Cup 2018: Italy[&hellip;]</a></li>
+        <li><a href="http://www.goal.com/en-in/match/india-v-myanmar/report/10ggrhcqhloyp9cgq4xue2961">AFC Asian Cup 2019[&hellip;]</a></li>
+        <li><a href="http://www.goal.com/en-in/news/i-league-2017-fixtures-released-minerva-to-host-mohun-bagan/60bqbxsidjh41my2jh8h17wc3">I-League 2017</a></li>
+       
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- Portfolio-->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script  src="js/index.js"></script>
+	
+</body>
+</html>
