@@ -8,39 +8,12 @@
 	<link href="css\layout.css" rel="stylesheet" type="text/css" media="all">
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-      <link rel="stylesheet" href="css/style.css">
 <style type="text/css">
 body{background: #1E1E1E}
 </style>
-<script>
-function check()
-{
-	if(window.confirm("Want to submit the details?"))
-	{
-		window.open('predict.html');		
-	}
-}
-function validate()
-{
-	var name= document.f1.t1.value;
-	var pass= document.f1.p1.value;
-	if(name=="")
-	{
-		alert("Fill out this field");
-		document.f1.t1.focus();
-	}
-	if( name!="" && pass=="")
-	{
-		alert("Fill out this field");
-		document.f1.t1.focus();
-	}	
-	if(name!="" && pass!="")
-	{		
-		check();
-	}
-}
-</script>
   
 </head>
 
@@ -70,21 +43,19 @@ function validate()
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Login</h1>
-    <form name="f1">
+    <div class="input-container" id="loginResponseMsg"></div>
+    <form id="loginForm" method="post">
       <div class="input-container">
-        <input type="#{type}" id="#{label}" name="t1" required/>
-        <label for="#{label}">Username*</label>
+        <input placeholder="Email" type="email" id="loginEmail" name="loginEmail" required/>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="#{type}" id="#{label}"  name="p1" required/>
-        <label for="#{label}">Password*</label>
+        <input type="password" placeholder="Password" id="loginPassword"  name="loginPassword" required/>
         <div class="bar"></div>
       </div>
       <div class="button-container">
-        <button  type="submit" onClick="validate()"><span>Go</span></button>
+        <button  type="submit"><span>Go</span></button>
       </div>
-      <div class="footer"><a href="help.html">Forgot your password?</a></div>
     </form>
   </div>
   <div class="card alt">
@@ -92,34 +63,26 @@ function validate()
     <h1 class="title">Register
       <div class="close"></div>
     </h1>
-    <form>
-    <div class="input-container">
-        <input type="#{type}" id="#{label}" required/>
-        <label for="#{label}">Name</label>
+    <form id="register_form" method="post">
+      <div class="input-container" id="signupResponseMsg"></div>
+          <div class="input-container">
+        <input type="text" placeholder="Full Name" id="uname" name="uname" />
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="#{type}" id="#{label}" required/>
-        <label for="#{label}">Age</label>
+        <input type="email" placeholder="Email" id="uemail" name="uemail" />
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="#{type}" id="#{label}" required/>
-        <label for="#{label}">Email Address</label>
+        <input type="password" placeholder="Password" id="upassword" name="upassword" />
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="#{type}" id="#{label}" required/>
-        <label for="#{label}">Password</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input type="#{type}" id="#{label}" required/>
-        <label for="#{label}">Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" id="uconfirmpassword" name="uconfirmpassword" />
         <div class="bar"></div>
       </div>
       <div class="button-container">
-        <button onClick="<a href=''" onFocus="return validate()"><span>Next</span></button>
+        <button type="submit"><span>Next</span></button>
       </div>
     </form>
   </div>
@@ -165,8 +128,116 @@ function validate()
 </div>
 <!-- Portfolio-->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+  <script  src="js/index.js"></script>
 
-    <script  src="js/index.js"></script>
+    <script type="text/javascript">
+      
+
+      $("#register_form").validate({
+              rules:
+                  {
+                      uname:{
+                          required: true,
+                          minlength: 4,
+                          maxlength: 50
+                      },
+                      upassword:{
+                          required: true,
+                          minlength: 8,
+                          maxlength: 15
+                      },
+                      uconfirmpassword:{
+                          required: true,
+                          equalTo: "#upassword"
+                      },
+                      uemail:{
+                          required: true,
+                          email: true
+                      }
+                  },
+
+              submitHandler: submitSignupForm
+          });
+
+       function submitSignupForm() {
+              $.ajax({
+                  type: "post",
+                  url: "register_form.php",
+                  data: {uname: $("#uname").val(), uemail: $("#uemail").val(), upassword: $("#upassword").val()},
+                  success: function (output) {
+
+                      if(output=="1"){
+                        $msg="<div class='alert alert-success' role='alert'>Signup successful.</div>";
+                      }else if(output=="2"){
+                        $msg="<div class='alert alert-danger' role='alert'>Error signing up. Try again!</div>";
+                      }else if(output=="3"){
+                        $msg="<div class='alert alert-danger' role='alert'>Email already exists.</div>";
+                      }else if(output=="4"){
+                        $msg="<div class='alert alert-danger' role='alert'>Error.</div>";
+                      }else if(output=="5"){
+                        $msg="<div class='alert alert-danger' role='alert'>Form data not received.</div>";
+                      }else{
+                        $msg="<div class='alert alert-danger' role='alert'>Error.</div>";
+                      }
+
+                      $("#signupResponseMsg").html($msg);
+
+                      if(output=="1"){
+                        window.location.href='http://localhost/sportify/index3.php';
+                      }
+                   }
+              });
+              return false;
+        }
+
+         $("#loginForm").validate({
+              rules:
+                  {
+                      loginEmail:{
+                          required: true
+                      },
+                      loginPassword:{
+                          required: true
+                      }
+                  },
+              submitHandler: submitLoginForm
+          });
+
+         function submitLoginForm() {
+              $.ajax({
+                  type: "post",
+                  url: "login_form.php",
+                  data: {loginEmail: $("#loginEmail").val(), loginPassword: $("#loginPassword").val()},
+                  success: function (output) {
+                    // alert(output);
+                      
+                      if(output=="1"){
+                        $msg="<div class='alert alert-success' role='alert'>Login successful.</div>";
+                      }else if(output=="2"){
+                        $msg="<div class='alert alert-danger' role='alert'>Wrong password.</div>";
+                      }else if(output=="3"){
+                        $msg="<div class='alert alert-danger' role='alert'>Email id doesn't exists.</div>";
+                      }else if(output=="4"){
+                        $msg="<div class='alert alert-danger' role='alert'>Error.</div>";
+                      }else if(output=="5"){
+                        $msg="<div class='alert alert-danger' role='alert'>Form data not received.</div>";
+                      }else{
+                        $msg="<div class='alert alert-danger' role='alert'>Error.</div>";
+                      }
+
+                      $("#loginResponseMsg").html($msg);
+
+                      if(output=="1"){
+                        window.location.href='http://localhost/sportify/index3.php';
+                      }
+                      
+                  }
+              });
+          }
+
+    </script>
 	
 </body>
 </html>

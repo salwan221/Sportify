@@ -104,6 +104,7 @@ table {
       var row = $(this).find('td:first').text();
 
       var save=$(this).find('td:last');
+      save.text('Predicting...');
 
       $.get("get_prediction_result.php?row_id="+row, function(data, status){
 
